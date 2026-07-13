@@ -1,0 +1,2 @@
+lr,batch_size,weight_decay,kernel_size,dropout_rate,nheads,attention_num_layers
+0.0001,32,0.0001,5,0.3,16,4
