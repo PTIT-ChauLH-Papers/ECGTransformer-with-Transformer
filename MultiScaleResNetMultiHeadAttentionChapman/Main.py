@@ -16,7 +16,7 @@ class Main(nn.Module):
                                             out_channels=out_channels,
                                             num_se_res_blocks=num_se_res_blocks,
                                             reduction=reduction,
-                                            out_channels=out_channels,
+                                            n_heads=n_heads,
                                             num_se_res_blocks=num_se_res_blocks,
                                             dropout_rate=dropout_rate)
         
