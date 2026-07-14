@@ -7,21 +7,16 @@ from torch.nn import functional as F
 # from CBAM1D import CBAM1D
 
 class Main(nn.Module):
-    def __init__(self, kernel_sizes, upcoming_kernel_size, out_channels, num_se_res_blocks, reduction, n_heads, attention_num_layers, dropout_rate=0.5):
+    def __init__(self, kernel_sizes, upcoming_kernel_size, out_channels, num_se_res_blocks, reduction, n_heads, attention_num_layers, dropout_rate):
         super(Main, self).__init__()
         
         # Multi-scale convolutional layers with different kernel sizes
         self.multi_scale_cnn = MultiScaleCNN(kernel_sizes=kernel_sizes, 
                                             upcoming_kernel_size=upcoming_kernel_size,
-                                            out_channels=out_channels,
-                                            num_se_res_blocks=num_se_res_blocks,
-                                            reduction=reduction,
-                                            n_heads=n_heads,
-                                            num_se_res_blocks=num_se_res_blocks,
-                                            dropout_rate=dropout_rate)
-        
-        self.out_channels = out_channels
-        
+                                            output_dim=out_channels,
+                                            dropout_rate=dropout_rate
+                                            )
+                
         # CRM module
         self.inplanes = out_channels
         crm_stride = 1

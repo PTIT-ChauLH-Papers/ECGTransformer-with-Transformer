@@ -1,7 +1,7 @@
 from torch import nn
 
 class MultiScaleCNN(nn.Module):
-    def __init__(self, kernel_sizes, upcoming_kernel_size, num_se_blocks, reduction, n_heads, output_dim, attention_num_layers, dropout_rate):
+    def __init__(self, kernel_sizes, upcoming_kernel_size, output_dim, dropout_rate):
         super(MultiScaleCNN, self).__init__()
         
         self.output_dim = output_dim
