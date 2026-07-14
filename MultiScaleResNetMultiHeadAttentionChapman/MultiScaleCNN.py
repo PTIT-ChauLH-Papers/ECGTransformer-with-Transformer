@@ -70,8 +70,8 @@ class MultiScaleCNN(nn.Module):
         x = self.max_pool_1D(x)
         x = self.dropout(x)
         
-        x = self.conv_block_2(x)
-        
+        if (self.output_dim >= 64):
+            x = self.conv_block_2(x)
         # More convolutional blocks based on output_dim
         if (self.output_dim >= 128):
             x = self.conv_block_3(x)
