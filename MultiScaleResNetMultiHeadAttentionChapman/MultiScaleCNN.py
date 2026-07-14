@@ -81,4 +81,5 @@ class MultiScaleCNN(nn.Module):
         if (self.output_dim >= 1024):
             x = self.conv_block_6(x)
         
+        return x
        
