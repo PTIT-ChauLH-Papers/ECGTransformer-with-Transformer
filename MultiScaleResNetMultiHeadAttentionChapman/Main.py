@@ -46,7 +46,7 @@ class Main(nn.Module):
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=attention_num_layers)
         
         self.aap = nn.AdaptiveAvgPool1d(1)
-        self.clf = nn.Linear(self.out_channels, 4)
+        self.clf = nn.Linear(out_channels, 4)
         
     def forward(self, x):
         # Multi-scale feature extraction
