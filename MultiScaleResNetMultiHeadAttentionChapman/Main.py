@@ -37,7 +37,7 @@ class Main(nn.Module):
             ),
             *[
                 ResidualBasicBlock(out_channels, out_channels, reduction=reduction)
-                for _ in range(1, num_se_res_blocks + 1)
+                for _ in range(1, num_se_res_blocks)
             ]
         )
         
