@@ -17,12 +17,13 @@ class MultiScaleCNN(nn.Module):
         self.max_pool_1D = nn.MaxPool1d(kernel_size=2, stride=2, padding=1)
         self.dropout = nn.Dropout(p=dropout_rate)
         
-        self.conv_block_2 = nn.Sequential(
-            nn.Conv1d(32, 64, kernel_size=upcoming_kernel_size, padding=upcoming_kernel_size // 2, stride=1, bias=False),
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.MaxPool1d(kernel_size=2, stride=2, padding=1)
-        )
+        if (output_dim >= 64):
+            self.conv_block_2 = nn.Sequential(
+                nn.Conv1d(32, 64, kernel_size=upcoming_kernel_size, padding=upcoming_kernel_size // 2, stride=1, bias=False),
+                nn.BatchNorm1d(64),
+                nn.ReLU(),
+                nn.MaxPool1d(kernel_size=2, stride=2, padding=1)
+            )
         
         if output_dim >= 128:                               
             self.conv_block_3 = nn.Sequential(
