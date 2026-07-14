@@ -6,7 +6,7 @@ class MultiScaleCNN(nn.Module):
         
         self.output_dim = output_dim
         # First scale
-        self.conv1_1 = nn.Conv1d(1, 32, kernel_size=kernel_sizes[0], padding=kernel_sizes // 2, stride=1, bias=False)
+        self.conv1_1 = nn.Conv1d(1, 32, kernel_size=kernel_sizes[0], padding=kernel_sizes[0] // 2, stride=1, bias=False)
         # Second scale
         self.conv2_1 = nn.Conv1d(1, 32, kernel_size=kernel_sizes[1], padding= (kernel_sizes[1]) //2, stride=1, bias=False)
         # Third scale
