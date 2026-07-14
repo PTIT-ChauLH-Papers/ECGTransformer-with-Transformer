@@ -42,7 +42,7 @@ class Main(nn.Module):
         )
         
         # Transformer encoder for bi-directional attention
-        self.encoder_layer = nn.TransformerEncoderLayer(d_model=self.out_channels, nhead=n_heads, batch_first=True)
+        self.encoder_layer = nn.TransformerEncoderLayer(d_model=out_channels, nhead=n_heads, batch_first=True)
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=attention_num_layers)
         
         self.aap = nn.AdaptiveAvgPool1d(1)
