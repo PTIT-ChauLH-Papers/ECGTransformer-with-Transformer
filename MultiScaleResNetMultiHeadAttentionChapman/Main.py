@@ -31,6 +31,7 @@ class Main(nn.Module):
             ResidualBasicBlock(
                 out_channels,
                 out_channels,
+                reduction=reduction,
                 stride=crm_stride,
                 downsample=downsample
             ),
@@ -40,15 +41,9 @@ class Main(nn.Module):
             ]
         )
         
-        self.encoder_layer = nn.TransformerEncoderLayer(d_model=out_channels, nhead=n_heads, batch_first=True, activation=F.relu)
+        # Transformer encoder for bi-directional attention
+        self.encoder_layer = nn.TransformerEncoderLayer(d_model=self.out_channels, nhead=n_heads, batch_first=True)
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=attention_num_layers)
-
-        self.aap = nn.AdaptiveAvgPool1d(1)
-        self.clf = nn.Linear(out_channels, 4)
-        
-        # # Transformer encoder for bi-directional attention
-        # self.encoder_layer = nn.TransformerEncoderLayer(d_model=self.out_channels, nhead=nheads, batch_first=True)
-        # self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=num_layers)
         
         self.aap = nn.AdaptiveAvgPool1d(1)
         self.clf = nn.Linear(self.out_channels, 4)
