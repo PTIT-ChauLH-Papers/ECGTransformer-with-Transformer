@@ -23,7 +23,7 @@ class SqueezeExcitation(torch.nn.Module):
 class ResidualBasicBlock(torch.nn.Module):
     expansion = 1
     
-    def __init__(self, in_channels, out_channels, stride=1, downsample=None):
+    def __init__(self, in_channels, out_channels, reduction, stride=1, downsample=None):
         super(ResidualBasicBlock, self).__init__()
         self.conv1 = torch.nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1)
         self.bn1 = torch.nn.BatchNorm1d(out_channels)
@@ -32,7 +32,7 @@ class ResidualBasicBlock(torch.nn.Module):
         self.bn2 = torch.nn.BatchNorm1d(out_channels)
         self.downsample = downsample
         
-        self.squeeze_excite = SqueezeExcitation(out_channels, reduction=4)
+        self.squeeze_excite = SqueezeExcitation(out_channels, reduction=reduction)
         
     def forward(self, x):
         identity = x
